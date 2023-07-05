@@ -1,0 +1,35 @@
+{
+  "name": "backend-pfinal1-correa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Correa7/BackEnd-PFinal1-Correa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Correa7/BackEnd-PFinal1-Correa/issues"
+  },
+  "homepage": "https://github.com/Correa7/BackEnd-PFinal1-Correa#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.0",
+    "connect-mongo": "^5.0.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "express-session": "^1.17.3",
+    "handlebars": "^4.7.7",
+    "mongo": "^0.1.0",
+    "mongoose": "^7.2.2",
+    "mongoose-paginate-v2": "^1.7.1",
+    "session-file-store": "^1.5.0",
+    "socket.io": "^4.6.1",
+    "uuid4": "^2.0.3"
+  }
+}

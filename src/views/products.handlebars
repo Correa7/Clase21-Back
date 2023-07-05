@@ -1,0 +1,49 @@
+<div class="box">
+  <div><h1>PRODUCTS</h1></div>
+
+    <div class="contenedor-cards" id="z-cards"> 
+        {{#each products}}
+                {{!-- <div class="card" style="width: 15rem;"> --}}
+                <div class="card" >
+                <img src="{{this.thumbnail}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    {{!-- <p class="card-text">Description: {{this.description}}</p> --}}
+                    <p class="card-text">Price: $<strong>{{this.price}}</strong> || Stock: {{this.stock}}</p>
+                    
+                </div>
+                <div class="card-body">
+                <button id="{{this._id}}" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+      {{/each}}
+    </div><br><br>
+    <div class="data-box">
+      <span> totalDocs:{{pagination.totalDocs}}</span>
+      <span>limit:{{pagination.limit}}</span>
+      <span>totalPages:{{pagination.totalPages}}</span>
+      <span>page:{{pagination.page}}</span>
+      <span>pagingCounter:{{pagination.pagingCounter}}</span>
+      <span>hasPrevPage:{{pagination.hasPrevPage}}</span>
+      <span>hasNextPage:{{pagination.hasNextPage}}</span>
+      <span>prevPage:{{pagination.prevPage}}</span>
+      <span>nextPage:{{pagination.nextPage}}</span>
+    </div>
+    <div class="pagination-box">
+      <div class="pagination-box-links">
+      {{#if pagination.hasPrevPage}}
+        <a class='pagination-links' href='/products/?page={{pagination.prevPage}}'><p>⬅</p><p>{{pagination.prevPage}}</p></a>
+      {{/if}}
+      <a class='pagination-links' href='#'><p>{{pagination.page}}</p></a>
+      {{#if pagination.hasNextPage}}
+        <a class='pagination-links' href='/products/?page={{pagination.nextPage}}'><p>{{pagination.nextPage}}</p><p>➡</p></a>
+      {{/if}}
+      </div>
+      <div class="pagination-box-totalLinks">
+      {{#each links}}
+        <a href='{{this.href}}'>{{this.label}}</a>
+      {{/each}}
+      </div>
+
+    </div> 
+</div>

@@ -1,0 +1,28 @@
+<div class="box-title">
+        <h2 class="title">Cart</h2>
+</div>
+
+<div class="box-table">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Thumbnail</th>
+            <th scope="col">title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+            <td><img src="https://via.placeholder.com/180x180"  class="table-img" alt={{this.title}}></td>
+            <td><h5 class="table-title">{{this.title}}</h5></td>
+            <td><h5>$<strong>{{this.price}}</strong></h5></td>
+            <td><h5>{{this.quantity}}</h5></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
