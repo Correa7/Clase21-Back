@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 8080 || process.env.PORT 
 
+
 //Mongo
 const DataBase= require('./dao/mongoDao/db')
 const Product= require('./dao/models/products.model')
@@ -27,6 +28,14 @@ app.use(session({
     saveUninitialized:false
 
 }))
+// Passport Passport-Local
+const initializePassport = require('./config/passport')
+const passport = require('passport')
+initializePassport() //Importante que este antes de el paasport.initialize
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 
 // Routes
 const productRouter = require('./routes/products/products.Router')

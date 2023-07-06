@@ -1,6 +1,8 @@
 const express = require('express')
 const User = require('../../dao/models/users.model')
 const UserServices = require('../services/users.services')
+const {createHash} = require ('../../utils/bcrypt')
+const passport = require('passport')
 
 const Service = new UserServices()
 
@@ -53,20 +55,23 @@ router.get('/:id', async (req, res) => {
       });
     }
     })
-router.post('/', async (req, res) => {
-    try {
-    const data= req.body
-    console.log(data)
-    const userCreated = await Service.createOne(data);
-    return  res.redirect('/session/login')
-    } catch (e) {
-    console.log(e);
-    return res.status(500).json({
-        status: 'error',
-        msg: 'something went wrong :(',
-        data: {},
-    });
-    }
+router.post('/', passport.authenticate('register-passport',{failureRedirect:'/session/failed-register'}),(req, res) => {
+    res.redirect('/session/login')
+    // try {
+    // const data= req.body
+    // console.log(data)
+    // data.password= createHash(data.password)
+    // const userCreated = await Service.createOne(data);
+    // return  res.redirect('/session/login')
+    // } 
+    // catch (e) {
+    // console.log(e);
+    // return res.status(500).json({
+    //     status: 'error',
+    //     msg: 'something went wrong :(',
+    //     data: {},
+    // });
+    // }
 });
 router.delete('/:id', async (req, res) => {
     try {
