@@ -83,7 +83,6 @@ const initializePassport = () => {
                 let userFound = await User.findOne({email:profile.email})
                 if(userFound){
                     console.log('User already exists')
-                    
                     done(null,false)
                 }
                 let userNew = {
@@ -91,7 +90,7 @@ const initializePassport = () => {
                     last_name: profile._json.name || profile._json.login || 'no-last-name',
                     email:profile.email,
                     age: 18,
-                    password:'no-password', 
+                    password:createHash('123'), 
                     rol: 'User'
                 }
                 let result = await User.create(userNew)
