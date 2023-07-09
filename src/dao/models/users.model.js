@@ -20,12 +20,14 @@ const userSchema= new mongoose.Schema({
     age:{
         type:Number,
         unique:false,
-        required:true
+        required:true,
+        default:18
     },
     password:{
         type:String,
         unique:false,
-        required:true
+        required:true,
+        default:123456
     },
     rol:{
         type:String,

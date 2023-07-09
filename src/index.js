@@ -31,7 +31,10 @@ app.use(session({
 // Passport Passport-Local
 const initializePassport = require('./config/passport')
 const passport = require('passport')
+// Passport social
+// const gitHubPassport = require('./config/github.passport')
 initializePassport() //Importante que este antes de el paasport.initialize
+// gitHubPassport() 
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -54,6 +57,9 @@ app.use('/api/user',usersRouter)
 // Sessions
 const sessions = require('./routes/sessions/sessions.route')
 app.use('/session', sessions)
+// auth.pasport
+const authPassport = require('./routes/passport/auth.passport')
+app.use('/auth', authPassport)
 
 
 const routesRealTime = require('./routes/realTimeProduct/realTimeProduct.route')
@@ -164,13 +170,13 @@ io.on('connection', (socket)=>{
 
 })
 
-app.get('/', (req,res)=> {
+app.get('/', (req,res)=> {  
     const data={
         title:'ecommerce backend',
         message:'Ecommerce backend  Index',
-        style:'style.css'
+        style:'style.css',
     }
-    res.render('index', data)
+    res.render('index', data) 
 })
 
 server.listen(PORT, ()=>{
