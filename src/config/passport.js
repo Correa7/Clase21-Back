@@ -79,22 +79,23 @@ const initializePassport = () => {
                     return done(new Error('cannot get a valid email for this user'));
                 }
                 profile.email = emailDetail.email;
-
-                let userFound = await User.findOne({email:profile.email})
-                if(userFound){
-                    console.log('User already exists')
-                    done(null,false)
-                }
-                let userNew = {
-                    first_name: profile._json.name || profile._json.login || 'noname',
-                    last_name: profile._json.name || profile._json.login || 'no-last-name',
-                    email:profile.email,
-                    age: 18,
-                    password:createHash('123'), 
-                    rol: 'User'
-                }
-                let result = await User.create(userNew)
-                done(null, result)
+                let user = await User.findOne({ email: profile.email });
+            if (!user) {
+                const newUser = {
+                first_name: profile._json.name || profile._json.login || 'noname',
+                last_name: profile._json.name || profile._json.login || 'no-last-name',
+                email:profile.email,
+                age: 18,
+                password:createHash('123'), 
+                rol: 'User'
+                };
+                let userCreated = await User.create(newUser);
+                console.log('User Registration succesful');
+                return done(null, userCreated);
+            } else {
+            console.log('User already exists');
+            return done(null, user);
+            }
             }
             catch(err) {
                 console.log('Error en auth github');
